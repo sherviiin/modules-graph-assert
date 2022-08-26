@@ -96,7 +96,7 @@ class ModuleGraphAssertionsPlugin : Plugin<Project> {
       it.assertion = RestrictedDependenciesAssert(
         errorMatchers = graphRules.restricted,
         aliasMap = aliases,
-        whitelists = graphRules.whitelist
+        exceptions = graphRules.exceptions
       )
       it.dependencyGraph = moduleGraph
       it.outputs.upToDateWhen { true }

@@ -8,7 +8,6 @@ object Api {
     const val ASSERT_ALL = "assertModuleGraph"
     const val ASSERT_MAX_HEIGHT = "assertMaxHeight"
     const val ASSERT_RESTRICTIONS = "assertRestrictions"
-    const val ASSERT_WHITELIST = "assertWhitelist"
     const val ASSERT_ALLOWED = "assertAllowedModuleDependencies"
   }
 

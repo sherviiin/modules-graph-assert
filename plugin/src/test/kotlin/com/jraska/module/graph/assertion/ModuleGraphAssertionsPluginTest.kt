@@ -59,19 +59,18 @@ class ModuleGraphAssertionsPluginTest {
       maxHeight = 3
       allowed = arrayOf(":feature-\\S* -> :lib\\S*", ".* -> :core")
       restricted = arrayOf(":feature-one -X> :feature-two")
-      whitelist = arrayOf(".* -> :core")
+      exceptions = arrayOf(".* -> :core")
     }
 
     plugin.addModulesAssertions(project, extension)
 
     assert(project.tasks.findByName(Api.Tasks.ASSERT_ALL) != null)
-    assert(project.tasks.findByName(Api.Tasks.ASSERT_ALL)!!.dependsOn.size == 4)
+    assert(project.tasks.findByName(Api.Tasks.ASSERT_ALL)!!.dependsOn.size == 3)
 
     setOf(
       project.tasks.findByName(Api.Tasks.ASSERT_MAX_HEIGHT) as AssertGraphTask,
       project.tasks.findByName(Api.Tasks.ASSERT_ALLOWED) as AssertGraphTask,
-      project.tasks.findByName(Api.Tasks.ASSERT_RESTRICTIONS) as AssertGraphTask,
-      project.tasks.findByName(Api.Tasks.ASSERT_WHITELIST) as AssertGraphTask
+      project.tasks.findByName(Api.Tasks.ASSERT_RESTRICTIONS) as AssertGraphTask
     )
   }
 
