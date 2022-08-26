@@ -10,12 +10,12 @@ open class GraphRulesExtension {
     emptyArray<String>()
 
   /**
-   * Whitelist a dependency to override a restriction.
+   * Exceptions in defined restrictions.
    * Useful for refactoring phase, where one or a more dependency exist which requires time to adhere to newly defined restrictions
-   * each whitelist in format "regexp -> regexp" e.g.: ":feature-[a-z]* -> :allowed-lib"
+   * each exception in format "regexp -> regexp" e.g.: ":feature-[a-z]* -> :allowed-lib"
    */
-  var whitelist =
-    emptyArray<String>() // each whitelist in format "regexp -> regexp" e.g.: ":feature-[a-z]* -> :allowed-lib"
+  var exceptions =
+    emptyArray<String>()
   var allowed =
     emptyArray<String>() // each allowance in format "regexp -> regexp" e.g.: ":feature-[a-z]* -> :forbidden-lib"
   var configurations: Set<String> = Api.API_IMPLEMENTATON_CONFIGURATIONS
