@@ -10,13 +10,25 @@ open class GraphRulesExtension {
     emptyArray<String>()
 
   /**
-   * Exceptions in defined restrictions.
+   * (Optional) Exceptions in defined restrictions.
    * Useful for refactoring phase, where one or a more dependency exist which requires time to adhere to newly defined restrictions
    * each exception in format "regexp -> regexp" e.g.: ":feature-[a-z]* -> :allowed-lib"
    */
-  var exceptions =
+  var restrictedExceptions =
     emptyArray<String>()
+
+  /**
+   * each allowance in format "regexp -> regexp" e.g.: ":feature-[a-z]* -> :forbidden-lib"
+   */
   var allowed =
-    emptyArray<String>() // each allowance in format "regexp -> regexp" e.g.: ":feature-[a-z]* -> :forbidden-lib"
+    emptyArray<String>()
+
+  /**
+   * (Optional) Exceptions in defined allowed.
+   * Useful for refactoring phase, where one or a more dependency exist which requires time to adhere to newly defined restrictions
+   * each exception in format "regexp -> regexp" e.g.: ":feature-[a-z]* -> :allowed-lib"
+   */
+  var allowedExceptions =
+    emptyArray<String>()
   var configurations: Set<String> = Api.API_IMPLEMENTATON_CONFIGURATIONS
 }

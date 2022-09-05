@@ -59,7 +59,7 @@ class ModuleGraphAssertionsPluginTest {
       maxHeight = 3
       allowed = arrayOf(":feature-\\S* -> :lib\\S*", ".* -> :core")
       restricted = arrayOf(":feature-one -X> :feature-two")
-      exceptions = arrayOf(".* -> :core")
+      restrictedExceptions = arrayOf(".* -> :core")
     }
 
     plugin.addModulesAssertions(project, extension)

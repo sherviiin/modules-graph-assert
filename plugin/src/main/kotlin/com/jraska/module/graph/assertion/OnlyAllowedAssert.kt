@@ -7,9 +7,14 @@ import org.gradle.api.GradleException
 class OnlyAllowedAssert(
   private val allowedDependencies: Array<String>,
   private val aliasMap: Map<String, String> = emptyMap(),
+  private val exceptions: Array<String> = emptyArray()
 ) : GraphAssert {
+  @OptIn(ExperimentalStdlibApi::class)
   override fun assert(dependencyGraph: DependencyGraph) {
-    val matchers = allowedDependencies.map { Parse.matcher(it) }
+    val matchers = buildList {
+      addAll(allowedDependencies)
+      addAll(exceptions)
+    }.map { Parse.matcher(it) }
 
     val disallowedDependencies = dependencyGraph.dependencyPairs()
       .map { aliasMap.mapAlias(it) }
