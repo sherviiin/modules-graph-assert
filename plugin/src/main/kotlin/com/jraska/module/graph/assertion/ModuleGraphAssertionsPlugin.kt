@@ -96,7 +96,7 @@ class ModuleGraphAssertionsPlugin : Plugin<Project> {
       it.assertion = RestrictedDependenciesAssert(
         errorMatchers = graphRules.restricted,
         aliasMap = aliases,
-        exceptions = graphRules.exceptions
+        exceptions = graphRules.restrictedExceptions
       )
       it.dependencyGraph = moduleGraph
       it.outputs.upToDateWhen { true }
@@ -110,7 +110,11 @@ class ModuleGraphAssertionsPlugin : Plugin<Project> {
     }
 
     return tasks.register(Tasks.ASSERT_ALLOWED, AssertGraphTask::class.java) {
-      it.assertion = OnlyAllowedAssert(graphRules.allowed, aliases)
+      it.assertion = OnlyAllowedAssert(
+        allowedDependencies = graphRules.allowed,
+        aliasMap = aliases,
+        exceptions = graphRules.allowedExceptions
+      )
       it.dependencyGraph = moduleGraph
       it.outputs.upToDateWhen { true }
       it.group = VERIFICATION_GROUP

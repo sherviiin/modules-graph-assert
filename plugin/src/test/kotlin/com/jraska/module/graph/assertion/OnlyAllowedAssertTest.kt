@@ -70,6 +70,22 @@ class OnlyAllowedAssertTest {
     OnlyAllowedAssert(allowedDependencies, aliases).assert(dependencyGraph)
   }
 
+  @Test
+  fun passesWhenAllowedWithException() {
+    val dependencyGraph = testGraph()
+
+    val allowedDependencies = arrayOf(
+      "app -> .*",
+      "feature[a-z]* -> lib[0-9]*",
+      "feature[a-z]* -> api[0-9]*",
+    )
+    val exceptions = arrayOf(
+      "api[0-9]* -> lib"
+    )
+
+    OnlyAllowedAssert(allowedDependencies = allowedDependencies, exceptions = exceptions).assert(dependencyGraph)
+  }
+
   private fun testGraph(): DependencyGraph {
     return DependencyGraph.create(
       "app" to "feature",
